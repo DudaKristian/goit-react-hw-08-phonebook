@@ -1,0 +1,28 @@
+.header{
+    display: flex;
+    align-items: center;
+
+    padding-left: 36px;
+    padding-right: 36px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    background-color: #4B4E54;
+
+    width: 100%;
+    
+}
+
+.header__forms{
+    display: flex;
+    margin-left: auto;
+}
+
+.header__link_signUp{
+    margin-left: 20px;
+}
+
+.header__logo{
+    width: 130px;
+    height: 25px;
+}

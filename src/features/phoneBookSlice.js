@@ -4,38 +4,43 @@ const TAG_CONTACTS = "Contacts";
 
 export const contactsApi = createApi({
     reducerPath: 'contacts',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://62fe47e641165d66bfbcab41.mockapi.io/api/v1' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://connections-api.herokuapp.com/' }),
     tagTypes: [TAG_CONTACTS],
     endpoints: (builder) => ({
-        getContacts: builder.query({
-            query: () => `/contacts`,
-            providesTags: [TAG_CONTACTS]
-        }),
-        // filterContactsByName: builder.query({
-        //     query: id => `/contacts/${id}`,
+        // getContacts: builder.query({
+        //     query: () => `/contacts`,
         //     providesTags: [TAG_CONTACTS]
         // }),
-        addContact: builder.mutation({
+        addUser: builder.mutation({
             query: contact => ({
-                url: "/contacts",
+                url: "/users/signup",
                 method: "POST",
                 body: contact
             }),
             invalidatesTags: [TAG_CONTACTS],
         }),
-        deleteContact: builder.mutation({
-            query: id => ({
-                url: `/contacts/${id}`,
-                method: "DELETE",
+        logInUser: builder.mutation({
+            query: contact => ({
+                url: "/users/login",
+                method: "POST",
+                body: contact
             }),
             invalidatesTags: [TAG_CONTACTS],
-        })
+        }),
+        // deleteContact: builder.mutation({
+        //     query: id => ({
+        //         url: `/contacts/${id}`,
+        //         method: "DELETE",
+        //     }),
+        //     invalidatesTags: [TAG_CONTACTS],
+        // })
     }),
 })
 
 export const {
-    useGetContactsQuery,
-    useAddContactMutation,
-    useDeleteContactMutation,
+    // useGetContactsQuery,
+    useAddUserMutation,
+    useLogInUserMutation,
+    // useDeleteContactMutation,
     // useFilterContactsByNameQuery
 } = contactsApi
