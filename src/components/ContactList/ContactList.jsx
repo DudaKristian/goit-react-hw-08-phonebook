@@ -1,4 +1,4 @@
-import { useGetContactsQuery, useDeleteContactMutation } from 'features/phoneBookSlice';
+import { useGetContactsQuery, useDeleteContactMutation } from 'features/phoneBookAPI';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'features/filterSlice';
 

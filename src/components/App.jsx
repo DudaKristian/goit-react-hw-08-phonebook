@@ -1,15 +1,22 @@
 import { Routes, Route } from "react-router-dom";
+// import { useSelector } from 'react-redux';
 import { Suspense, lazy } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout'
+import { useGetCurrentUserQuery } from "features/phoneBookAPI";
+// import { getUser } from "features/userSlice";
+
+
 
 const Home = lazy(() => import("../pages/Home/Home"));
 const Login = lazy(() => import("../pages/Login/Login"));
 const Registration = lazy(() => import("../pages/Registration/Registration"));
 
 const App = () => {
+  
+  useGetCurrentUserQuery();
 
   return (
-    <Suspense fallback={"Loading..."}>
+    <Suspense fallback={ <p> Loading... </p>}>
       <Routes>
         <Route path="/" element={<SharedLayout />} >
           <Route index element={<Home />} />

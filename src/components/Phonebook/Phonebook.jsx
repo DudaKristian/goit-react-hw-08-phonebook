@@ -1,6 +1,6 @@
 import { useState } from "react";
 import shortId from "shortid";
-import { useAddContactMutation, useGetContactsQuery} from "features/phoneBookSlice";
+import { useAddContactMutation, useGetContactsQuery} from "features/phoneBookAPI";
 
 const Phonebook = () => {
 

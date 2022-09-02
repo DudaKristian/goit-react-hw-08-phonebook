@@ -1,13 +1,13 @@
 import styles from "./Login.module.css"
 import image from "images/login.png"
 import { useState } from "react"
-import { useLogInUserMutation } from "features/phoneBookSlice";
+import { useLogInUserMutation } from "features/phoneBookAPI.js";
 
-
+// insert loader into the button and show it while loading, use sighIn hook status isLoading
 
 const Login = () => {
 
-    const [signIn,] = useLogInUserMutation();
+    const [signIn] = useLogInUserMutation();
 
     const [email, setEmail] = useState("dudauser@gmail.com");
     const [password, setPassword] = useState("dudauser12345")
@@ -68,7 +68,10 @@ const Login = () => {
                             value={password}
                             onChange={handleChange}
                         />
-                        <button type="submit" className={styles.login__button}>Log in</button>
+                        <button
+                            type="submit"
+                            className={styles.login__button}
+                            >Log in</button>
                     </label>
                 </form>
             </div>

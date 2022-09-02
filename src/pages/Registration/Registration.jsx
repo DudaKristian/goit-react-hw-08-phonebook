@@ -1,7 +1,7 @@
 import styles from "./registration.module.css"
 import image from "images/reg.png"
 import { useState } from "react"
-import { useAddUserMutation } from "features/phoneBookSlice"
+import { useAddUserMutation } from "features/phoneBookAPI"
 
 
 const Registration = () => {
