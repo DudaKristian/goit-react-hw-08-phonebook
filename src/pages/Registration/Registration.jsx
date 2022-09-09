@@ -47,6 +47,11 @@ const Registration = () => {
             setEmail("")
             setPassword("")
         }
+
+        // TO DO: change into nice alert
+        if (!name && !email && !password) {
+            alert("enter data")
+        }
     }
 
     return (
@@ -56,7 +61,7 @@ const Registration = () => {
                 
                 <h2 className={styles.reg__title}>Wellcome aboard!</h2>
                 <p className={styles.reg__aditional}>Create account to start using inTouch</p>
-                <form  onClick={handleSubmit}>
+                <form  >
                     <label htmlFor="">
                         <input 
                             className={styles.reg__input} 
@@ -85,6 +90,7 @@ const Registration = () => {
                         <button 
                             className={styles.reg__button} 
                             type="submit"
+                            onClick={handleSubmit}
                         >Sign up</button>
                     </label>
                 </form>

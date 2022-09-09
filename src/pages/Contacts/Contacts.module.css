@@ -1,0 +1,48 @@
+.contacts__background{
+    background-color: #323232;
+    
+    display: flex;
+
+    width: 100%;
+    height: 853px;
+
+    position: relative;
+}
+
+.contacts__girl{
+    position: absolute;
+
+    width: 885px;
+    height: 846px;
+    
+    top: 95px;
+    left: -423px;
+
+    background-blend-mode: hard-light;
+    opacity: 0.5;
+    filter: blur(14px);
+}
+
+.contacts__boy{
+    position: absolute;
+    
+    width: 774px;
+    height: 865px;
+
+    top: -37px;
+    right: -79px;
+
+    background-blend-mode: color-burn;
+    opacity: 0.5;
+    filter: blur(12px);
+}
+
+.contacts__wrapper{
+    display: flex;
+    
+    z-index: 5;
+
+    padding-left: 52px;
+    padding-top: 44px;
+    
+}

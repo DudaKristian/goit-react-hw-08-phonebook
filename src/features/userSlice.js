@@ -6,6 +6,7 @@ const initialState = {
     name: "",
     email: "",
     token: "",
+    isLogedIn : false,
 }
 
 export const userSlice = createSlice({
@@ -15,6 +16,7 @@ export const userSlice = createSlice({
         getCurrentSuccess: (state, { payload }) => {
             state.name = payload.name;
             state.email = payload.email;
+            state.isLogedIn = true;
         },
     },
     extraReducers: (builder) => {
@@ -26,6 +28,7 @@ export const userSlice = createSlice({
             state.name = user.name;
             state.email = user.email;
             state.token = token;
+            state.isLogedIn = true;
         },
         )
         builder.addMatcher(
@@ -33,8 +36,17 @@ export const userSlice = createSlice({
             (state, { payload }) => {
             state.name = payload.name;
             state.email = payload.email;
+            state.isLogedIn = true;
         },
         )
+        builder.addMatcher(
+            contactsApi.endpoints.getLogout.matchFulfilled,
+            state => {
+            state.email = initialState.email;
+            state.name = initialState.name;
+            state.token = initialState.token;
+            state.isLogedIn = initialState.isLogedIn;
+    });
     },
     
 

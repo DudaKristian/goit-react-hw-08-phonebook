@@ -34,10 +34,26 @@ export const contactsApi = createApi({
         getCurrentUser: builder.query({
             query: () => "/users/current", 
         }),
-        // getContacts: builder.query({
-        //     query: () => `/contacts`,
-        //     providesTags: [TAG_CONTACTS]
-        // }),
+        getLogout: builder.mutation({
+            query: payload => ({
+                url: `/users/logout`,
+                method: 'POST',
+                body: payload,
+            }),
+            invalidatesTags: [TAG_CONTACTS],
+        }),
+        createContact: builder.mutation({
+            query: newContact => ({
+                url: `/contacts`,
+                 method: 'POST',
+                body: newContact,
+              }),
+        invalidatesTags: [TAG_CONTACTS],
+        }),
+        getContacts: builder.query({
+            query: () => `/contacts`,
+            providesTags: [TAG_CONTACTS]
+        }),
         // deleteContact: builder.mutation({
         //     query: id => ({
         //         url: `/contacts/${id}`,
@@ -49,10 +65,12 @@ export const contactsApi = createApi({
 })
 
 export const {
-    // useGetContactsQuery,
+    useGetContactsQuery,
     useGetCurrentUserQuery,
     useAddUserMutation,
     useLogInUserMutation,
+    useGetLogoutMutation,
+    useCreateContactMutation,
     // useDeleteContactMutation,
     // useFilterContactsByNameQuery
 } = contactsApi

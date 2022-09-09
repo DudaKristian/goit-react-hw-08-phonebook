@@ -1,0 +1,41 @@
+.filter__input{
+    font-size: 16px;
+
+    z-index: 8;
+    
+    width: 870px;
+    height: 58px;
+
+    padding: 8px 16px;
+    padding-left: 55px;
+    gap: 4px;
+
+    background: #B3B3B5;
+
+    color: #686868;
+
+    border: none;
+    border-radius: 12px;
+
+    outline: none;
+}
+
+.filter__wrapper{
+    position: relative;
+}
+.filter{
+    position: relative;
+}
+.filter::before{
+    position: absolute;
+    z-index: 500;
+
+    content: url("../../images/Filter.png");
+
+    width: 27px;
+    height: 27px;
+
+    top: 0;
+    left: 19px;
+
+}

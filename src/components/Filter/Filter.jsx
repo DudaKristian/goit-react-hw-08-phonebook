@@ -1,6 +1,7 @@
 import shortId from "shortid"
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilter, setFilter } from "features/filterSlice";
+import styles from "./Filter.module.css";
 
 
 const Filter = () => {
@@ -16,15 +17,21 @@ const Filter = () => {
     }
     
     return (
-        <label htmlFor={filterInputId}>
-            Find contacts by name <br />
+        <div className={styles.filter__wrapper}>
+            <label
+            htmlFor={filterInputId}
+            className = {styles.filter}
+        >
             <input type="text"
                 name="filter"
                 id={filterInputId}
                 onChange={onChange}
-                value = {filter}
+                value={filter}
+                placeholder = "Find contact by name"
+                className ={styles.filter__input}
                 />
         </label>
+        </div>
     )
 }
 

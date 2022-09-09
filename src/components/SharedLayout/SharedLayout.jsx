@@ -1,7 +1,11 @@
 import { NavLink, Outlet, Link } from "react-router-dom"
+import { useSelector } from 'react-redux';
+import { getUser } from "features/userSlice";
 import styles from "./SharedLayout.module.css"
 import styled from "styled-components";
 import logo from "images/logo.png"
+import { useGetLogoutMutation } from "features/phoneBookAPI";
+
 
 const StyledLinkSignIn = styled(NavLink)`
     display: flex;
@@ -28,6 +32,7 @@ const StyledLinkSignIn = styled(NavLink)`
         background-color: #DA6A4B;
         color: #FCFDFF;
         border: none;
+        cursor: pointer;
     }
             
     &.active {
@@ -61,6 +66,7 @@ const StyledLinkSignUp = styled(NavLink)`
         background-color: #DA6A4B;
         color: #FCFDFF;
         border: none;
+        cursor: pointer;
     }
             
     &.active {
@@ -71,16 +77,38 @@ const StyledLinkSignUp = styled(NavLink)`
     `;
 
 export const SharedLayout = () => {
+
+    const { isLogedIn, name } = useSelector(getUser);
+    const [logOut] = useGetLogoutMutation();
+
+    const logOutHandler = e => {
+        e.preventDefault()
+        logOut();
+    }
+
     return (
         <>
             <header className={styles.header}>
                 <Link to="/" >
                     <img src={logo} alt="logo" className={styles.header__logo}/>
                 </Link>
-                <div className={styles.header__forms}>    
-                    <StyledLinkSignIn to="/login" >SIGN IN</StyledLinkSignIn>       
-                    <StyledLinkSignUp to="/registration"className={styles.header__link_signUp}>SIGN UP</StyledLinkSignUp>
-                </div>
+                {isLogedIn ? 
+                    
+                    <div className={styles.header__forms}>
+                        <span className={styles.header__userName}>{name}</span>
+                        <button className={styles.header__logOut}
+                            type="submit"
+                            onClick={logOutHandler}
+                        >LOG OUT</button>
+                    </div>
+                    :
+                    <div className={styles.header__forms}>    
+                        <StyledLinkSignIn to="/login" >SIGN IN</StyledLinkSignIn>       
+                        <StyledLinkSignUp to="/registration"className={styles.header__link_signUp}>SIGN UP</StyledLinkSignUp>
+                    </div>
+                    
+                }
+                
             </header>
         
             <Outlet/>
@@ -90,6 +118,3 @@ export const SharedLayout = () => {
 
 
 
-/* <NavLink>Login</NavLink>
-        <NavLink>Login</NavLink>
-        <NavLink>Login</NavLink> */

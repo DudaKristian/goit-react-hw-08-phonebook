@@ -26,3 +26,56 @@
     width: 130px;
     height: 25px;
 }
+
+.header__logOut{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 160px;
+    height: 56px;
+
+    border-radius: 12px;
+    border: none;
+
+    font-weight: 500;
+    font-size: 22px;
+    font-style: normal;
+
+    color: #AAAEBA;
+    text-decoration: none;
+    background-color: transparent;
+
+    transition-property: background-color, color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    padding-left: 16px;
+}
+
+.header__logOut:hover {
+    background-color: #DA6A4B;
+    color: #FCFDFF;
+    border: none;
+    cursor: pointer;
+}
+
+.header__userName{
+    font-weight: 500;
+    font-size: 20px;
+    
+    display: flex;
+    align-items: center;
+
+    color: #B2B5BC;
+
+    padding-right: 55px;
+    margin-right: 16px;
+    
+    border-right: 2px solid #B2B5BC;
+}
+
+.header__userName::before{
+    content: url("../../images/userNameIcon.png");
+    margin-right: 13px;
+}

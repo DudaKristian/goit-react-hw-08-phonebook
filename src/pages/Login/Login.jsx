@@ -12,6 +12,9 @@ const Login = () => {
     const [email, setEmail] = useState("dudauser@gmail.com");
     const [password, setPassword] = useState("dudauser12345")
 
+    // dudauser@gmail.com
+    // dudauser12345
+    
     const data = {
         email,
         password,
@@ -42,6 +45,11 @@ const Login = () => {
             setEmail("")
             setPassword("")
         }
+
+        // TO DO: change into nice alert
+        if (!email && !password) {
+            alert("enter data")
+        }
     }
 
     return(
@@ -50,7 +58,7 @@ const Login = () => {
             <div className={styles.login__wrapper}>
                 <h2 className={styles.login__title}>Wellcome back!</h2>
                 <p className={styles.login__aditional}>Please, enter your details</p>
-                <form onClick={handleSubmit}>
+                <form >
                     <label htmlFor="">
                         <input
                             className={styles.login__input}
@@ -71,6 +79,7 @@ const Login = () => {
                         <button
                             type="submit"
                             className={styles.login__button}
+                            onClick={handleSubmit}
                             >Log in</button>
                     </label>
                 </form>

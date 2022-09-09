@@ -1,27 +1,55 @@
 import { Routes, Route } from "react-router-dom";
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Suspense, lazy } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout'
 import { useGetCurrentUserQuery } from "features/phoneBookAPI";
-// import { getUser } from "features/userSlice";
-
+import { getUser } from "features/userSlice";
+import PrivateRoute from 'components/Routes/PrivateRoute';
+import PublicRoute from 'components/Routes/PublicRoute';
 
 
 const Home = lazy(() => import("../pages/Home/Home"));
 const Login = lazy(() => import("../pages/Login/Login"));
 const Registration = lazy(() => import("../pages/Registration/Registration"));
+const Contacts = lazy(() => import("../pages/Contacts/Contacts"));
+
 
 const App = () => {
-  
-  useGetCurrentUserQuery();
+  const { token, isLogedIn } = useSelector(getUser);
+  useGetCurrentUserQuery(undefined, { skip: !token });
 
   return (
     <Suspense fallback={ <p> Loading... </p>}>
       <Routes>
-        <Route path="/" element={<SharedLayout />} >
+        <Route path="/"
+          element={
+            <PublicRoute redirectPath="/" isLoggedIn={isLogedIn}>
+                <SharedLayout />
+            </PublicRoute>} >
           <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />}/>
+          
+          <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectPath="/login" isLoggedIn={isLogedIn}>
+                  <Contacts />
+                </PrivateRoute>
+              }
+              />
+          
+        
+          <Route
+            element={
+              <PublicRoute
+                redirectPath="/contacts"
+                isLoggedIn={isLogedIn}
+                restricted
+              />
+            }
+          >
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>
@@ -32,13 +60,4 @@ export default App
 
 
 
-/* <h1>Phonebook</h1>
-        <Phonebook />
-        <h2>Contacts</h2>
-        <Filter />
-        <ContactList /> */
 
-        // 
-// const ContactList = lazy(() => import("./ContactList/ContactList"));
-// const Filter = lazy(() => import("./Filter/Filter"));
-// const Phonebook = lazy(() => import("./Phonebook/Phonebook"));
