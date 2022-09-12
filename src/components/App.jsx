@@ -24,9 +24,10 @@ const App = () => {
         <Route path="/"
           element={
             <PublicRoute redirectPath="/" isLoggedIn={isLogedIn}>
-                <SharedLayout />
+              <SharedLayout />
+              
             </PublicRoute>} >
-          <Route index element={<Home />} />
+            <Route index element={<Home />} />
           
           <Route
               path="/contacts"

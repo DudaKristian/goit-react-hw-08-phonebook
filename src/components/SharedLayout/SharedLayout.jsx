@@ -92,22 +92,24 @@ export const SharedLayout = () => {
                 <Link to="/" >
                     <img src={logo} alt="logo" className={styles.header__logo}/>
                 </Link>
-                {isLogedIn ? 
+                {isLogedIn ?
                     
-                    <div className={styles.header__forms}>
-                        <span className={styles.header__userName}>{name}</span>
-                        <button className={styles.header__logOut}
-                            type="submit"
-                            onClick={logOutHandler}
-                        >LOG OUT</button>
-                    </div>
-                    :
-                    <div className={styles.header__forms}>    
-                        <StyledLinkSignIn to="/login" >SIGN IN</StyledLinkSignIn>       
-                        <StyledLinkSignUp to="/registration"className={styles.header__link_signUp}>SIGN UP</StyledLinkSignUp>
-                    </div>
+                        <div className={styles.header__forms}>
+                            <StyledLinkSignIn to="/contacts">myContacts</StyledLinkSignIn>
+                            <span className={styles.header__userName}>{name}</span>
+                            <button className={styles.header__logOut}
+                                type="submit"
+                                onClick={logOutHandler}
+                            >LOG OUT</button>
+                        </div>
                     
-                }
+                        :
+                        <div className={styles.header__forms}>
+                            <StyledLinkSignIn to="/login" >SIGN IN</StyledLinkSignIn>
+                            <StyledLinkSignUp to="/registration" className={styles.header__link_signUp}>SIGN UP</StyledLinkSignUp>
+                        </div>
+                    
+                    }
                 
             </header>
         

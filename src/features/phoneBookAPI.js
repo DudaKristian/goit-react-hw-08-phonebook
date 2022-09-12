@@ -54,13 +54,21 @@ export const contactsApi = createApi({
             query: () => `/contacts`,
             providesTags: [TAG_CONTACTS]
         }),
-        // deleteContact: builder.mutation({
-        //     query: id => ({
-        //         url: `/contacts/${id}`,
-        //         method: "DELETE",
-        //     }),
-        //     invalidatesTags: [TAG_CONTACTS],
-        // })
+        deleteContact: builder.mutation({
+            query: id => ({
+                url: `/contacts/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: [TAG_CONTACTS],
+        }),
+        patchContact: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `/contacts/${id}`,
+        method: 'PATCH',
+        body: patch,
+      }),
+      invalidatesTags: [TAG_CONTACTS],
+    }),
     }),
 })
 
@@ -71,6 +79,6 @@ export const {
     useLogInUserMutation,
     useGetLogoutMutation,
     useCreateContactMutation,
-    // useDeleteContactMutation,
+    useDeleteContactMutation,
     // useFilterContactsByNameQuery
 } = contactsApi
